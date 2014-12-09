@@ -136,7 +136,7 @@ public:
         ret = serial;
       else
       {
-        ROS_ERROR("Device \"%s\": failed to query serial number.\n", Uri.c_str());
+        ROS_ERROR("Device \"%s\": failed to query serial number: %s\n", Uri.c_str(), openni::OpenNI::getExtendedError());
       }
 
       // close the device again
@@ -144,7 +144,7 @@ public:
     }
     else
     {
-      ROS_DEBUG("Device \"%s\": failed to open for serial number query. It's probably used by another process.\n", Uri.c_str());
+      ROS_ERROR("Device \"%s\": failed to open for serial number query: %s\n", Uri.c_str(), openni::OpenNI::getExtendedError());
     }
 
     return ret;
